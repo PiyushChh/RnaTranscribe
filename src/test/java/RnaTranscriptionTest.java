@@ -1,11 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RnaTranscriptionTest {
-
 
     private RnaTranscription rnaTranscription;
 
@@ -16,37 +14,65 @@ public class RnaTranscriptionTest {
 
     @Test
     public void testEmptyRnaSequence() {
-        assertThat(rnaTranscription.transcribe("")).isEmpty();
-    }
+        String actual = rnaTranscription.transcribe("");
 
+        assertThat(actual).isEmpty();
+    }
 
     @Test
     public void testRnaTranscriptionOfCytosineIsGuanine() {
-        assertThat(rnaTranscription.transcribe("C")).isEqualTo("G");
-    }
+        String expected = "G";
 
+        String inputStrand = "C";
+
+        String actual = rnaTranscription.transcribe(inputStrand);
+
+        assertThat(actual).isEqualTo(expected);
+    }
 
     @Test
     public void testRnaTranscriptionOfGuanineIsCytosine() {
-        assertThat(rnaTranscription.transcribe("G")).isEqualTo("C");
-    }
+        String expected = "C";
 
+        String inputStrand = "G";
+
+        String actual = rnaTranscription.transcribe(inputStrand);
+
+        assertThat(actual).isEqualTo(expected);
+    }
 
     @Test
     public void testRnaTranscriptionOfThymineIsAdenine() {
-        assertThat(rnaTranscription.transcribe("T")).isEqualTo("A");
-    }
+        String expected = "A";
 
+        String inputStrand = "T";
+
+        String actual = rnaTranscription.transcribe(inputStrand);
+
+        assertThat(actual).isEqualTo(expected);
+    }
 
     @Test
     public void testRnaTranscriptionOfAdenineIsUracil() {
-        assertThat(rnaTranscription.transcribe("A")).isEqualTo("U");
-    }
 
+        String expected = "U";
+
+        String inputStrand = "A";
+
+        String actual = rnaTranscription.transcribe(inputStrand);
+
+        assertThat(actual).isEqualTo(expected);
+    }
 
     @Test
     public void testRnaTranscription() {
-        assertThat(rnaTranscription.transcribe("ACGTGGTCTTAA")).isEqualTo("UGCACCAGAAUU");
+        String expected = "UGCACCAGAAUU";
+
+        String inputString = "ACGTGGTCTTAA";
+
+        String actual = rnaTranscription.transcribe(inputString);
+
+        assertThat(actual).isEqualTo(expected);
     }
 }
 
